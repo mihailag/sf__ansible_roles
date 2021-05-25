@@ -1,0 +1,18 @@
+---
+# tasks file for vsftpd
+- name: Install package
+  apt:
+    name: vsftpd
+    state: present
+    update_cache: true
+  notify:
+    - start service
+
+- name: Copy config
+  copy: 
+    src: "{{ role_path }}/files/vsftpd.conf"
+    dest: /etc/vsftpd.conf
+    owner: root
+    group: root
+  notify:
+    - restart service
