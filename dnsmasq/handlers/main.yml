@@ -1,0 +1,12 @@
+---
+# handlers file for dnsmasq
+    - name: start service
+      service:
+        name: dnsmasq
+        state: started
+        enabled: yes
+    
+    - name: restart service
+      service:
+        name: dnsmasq
+        state: restarted

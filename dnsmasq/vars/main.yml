@@ -1,0 +1,3 @@
+---
+# vars file for dnsmasq
+    cache_size: 10000

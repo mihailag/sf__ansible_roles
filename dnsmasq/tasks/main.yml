@@ -1,0 +1,24 @@
+---
+# tasks file for dnsmasq
+- name: Install package
+  apt:
+    name: dnsmasq
+    state: present
+    update_cache: true
+  notify:
+    - start service
+
+- name: Copy config
+  template: 
+    src: "{{ role_path }}/templates/dnsmasq.conf.j2"
+    dest: /etc/dnsmasq.conf
+    owner: root
+    group: root
+  notify:
+    - restart service
+
+- name: Add localhost to resolv.conf
+  lineinfile:
+    path: /etc/resolv.conf
+    line: nameserver 127.0.0.1
+    insertbefore: '^nameserver'
