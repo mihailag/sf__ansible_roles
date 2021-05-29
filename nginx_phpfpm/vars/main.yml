@@ -1,0 +1,6 @@
+---
+# vars file for nginx_phpfpm
+http_port: 80
+php_version: 8.0
+server_name: example.com
+app_work_dir: /opt/nginx/ansible

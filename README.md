@@ -15,6 +15,11 @@ Ansible-роли
 
 Настраивает localhost первым DNS сервером в системе.
 
+### nginx_phpfpm
+
+Устанавливает и настраивает связку nginx+php-fpm.
+
+Имя сервера, версию PHP и DocumentRoot можно указать с помощью переменных.
 
 ## Использование
 
@@ -26,4 +31,5 @@ Ansible-роли
   roles:
     - vsftpd
     - dnsmasq
+    - nginx_phpfpm
 ```

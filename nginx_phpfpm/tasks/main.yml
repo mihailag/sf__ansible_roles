@@ -1,0 +1,39 @@
+---
+# tasks file for nginx_phpfpm
+- name: Install PHP PPA Repo
+  apt_repository:
+    repo: ppa:ondrej/php
+    state: present
+
+- name: Install php{{ php_version }}-fpm
+  apt: 
+    name: php{{ php_version }}-fpm
+    state: present
+
+- name: Install nginx
+  apt:
+    name: nginx
+    state: present
+
+- name: Create a directory
+  file:
+    path: "{{ app_work_dir }}"
+    state: directory
+    owner: root
+    group: root
+
+- name: Copy config
+  template: 
+    src: templates/default.j2
+    dest: /etc/nginx/sites-available/default
+    owner: root
+    group: root
+  notify:
+    - restart nginx
+
+- name: Copy index.php
+  template: 
+    src: templates/index.php.j2
+    dest: "{{ app_work_dir }}/index.php"
+    owner: root
+    group: root
